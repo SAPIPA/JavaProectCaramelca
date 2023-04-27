@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <h1>Список сотрудников</h1>
+    <div>
+        <form action="/employees/add" method="post">
+            <input type="text" name="name" placeholder="Введите имя" required>
+            <input type="text" name="surname" placeholder="Введите фамилию" required>
+            <input type="text" name="patronymic" placeholder="Введите отчество" required>
+            <input type="text" name="number" placeholder="Введите номер телефона" required>
+            <button type="submit">Добавить сотрудника</button>
+        </form>
+        <form action="/employees/filter" method="get">
+            <input type="text" name="name" placeholder="Имя">
+            <input type="text" name="surname" placeholder="Фамилия">
+            <input type="text" name="number" placeholder="Номер телефона">
+            <button type="submit">Поиск</button>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th>Номер телефона</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.surname}"></td>
+                <td th:text="${employee.patronymic}"></td>
+                <td th:text="${employee.number}"></td>
+                <td>
+                    <a th:href="'/employees/' + ${employee.id}">Редактировать</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

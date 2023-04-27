@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Редактирование сотрудника</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <h1>Редактирование сотрудника</h1>
+  <form th:action="@{/employees/{id}/edit(id=${id})}" method="post">
+    <input type="text" name="name" placeholder="Введите имя" th:value="${employee.name}" required>
+    <input type="text" name="surname" placeholder="Введите фамилию" th:value="${employee.surname}" required>
+    <input type="text" name="patronymic" placeholder="Введите отчество" th:value="${employee.patronymic}" required>
+    <input type="text" name="number" placeholder="Введите номер телефона" th:value="${employee.number}" required>
+    <button type="submit">Сохранить</button>
+  </form>
+  <form th:action="@{/employees/{id}/delete(id=${id})}" method="post">
+    <button type="submit">Удалить</button>
+  </form>
+</body>
+</html>
