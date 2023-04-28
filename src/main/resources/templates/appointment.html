@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Календарь</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<h1>Свободное время</h1>
+<form action="#" th:action="@{/calendar/add}" method="post">
+  <label for="date">Date:</label>
+  <input type="date" id="date" name="date" min="2023-04-28" max="2023-05-28" required />
+
+  <label for="time">Time:</label>
+  <input type="time" id="time" name="time" required />
+
+  <label for="employee">Employee:</label>
+  <select id="employee" name="employee" required>
+    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
+  </select>
+
+  <button type="submit">Add to Calendar</button>
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>Сотрудник</th>
+    <th>Дата</th>
+    <th>Время</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="calendar : ${calendar}">
+    <td th:text="${calendar.employee}"></td>
+    <td th:text="${calendar.date}"></td>
+    <td th:text="${calendar.time}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

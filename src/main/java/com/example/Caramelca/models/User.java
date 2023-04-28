@@ -45,6 +45,7 @@ public class User implements UserDetails{
         return username;
     }
 
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -66,14 +67,18 @@ public class User implements UserDetails{
     }
 
 
+
     public void setUsername(String username) {
         this.username = username;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
     }
+
+
 
     public String getPassword() {
         return password;
