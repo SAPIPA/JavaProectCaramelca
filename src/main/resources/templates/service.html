@@ -7,11 +7,41 @@
 </head>
 <body>
 <h1>Выберите дату</h1>
-<form th:action="@{/service/{id}/{date} (id=${service}, date=${#calendar}) }">
+<form th:action="@{/service/{id}/filter(id = ${id.id})}" method="get">
   <label for="date">Date:</label>
-  <input type="date" id="date" name="date" min="2023-04-28" max="2023-05-28" required />
+  <input type="date" id="date" name="date" min="2023-04-28" max="2023-05-28" />
 
-  <button type="submit">Далее (мастера и время)</button>
+  <label for="employer">Employee:</label>
+  <select id="employer" name="employer">
+    <option value="" selected>Select an option</option>
+    <option th:each="employer : ${employees}" th:value="${employer.id}" th:text="${employer.name} + ' ' + ${employer.surname}" />
+  </select>
+
+  <button type="submit">Filter</button>
 </form>
+<table>
+  <thead>
+  <tr>
+    <th>Сотрудник</th>
+    <th>Дата</th>
+    <th>Время</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="calendar : ${calendars}">
+    <td th:text="${calendar.employee.name} + ' ' + ${calendar.employee.surname}"></td>
+    <td th:text="${calendar.date}"></td>
+    <td th:text="${calendar.time}"></td>
+    <td>
+      <form th:action="@{/service/{id}/appointment(id = ${id.id})}" method="post">
+        <input type="hidden" name="employer" th:value="${calendar.employee.id}" />
+        <input type="hidden" name="date" th:value="${calendar.date}" />
+        <input type="hidden" name="time" th:value="${calendar.time}" />
+        <button type="submit">Записаться</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
 </body>
 </html>

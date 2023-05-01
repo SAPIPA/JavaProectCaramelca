@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Employee {
     //Добавить должность
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

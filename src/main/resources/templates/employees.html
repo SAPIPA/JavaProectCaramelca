@@ -11,14 +11,14 @@
     </form>
     <h1>Список сотрудников</h1>
     <div>
-        <form action="/employees/add" method="post">
+        <form th:action="@{/employees/add}" method="post">
             <input type="text" name="name" placeholder="Введите имя" required>
             <input type="text" name="surname" placeholder="Введите фамилию" required>
             <input type="text" name="patronymic" placeholder="Введите отчество" required>
             <input type="text" name="number" placeholder="Введите номер телефона" required>
             <button type="submit">Добавить сотрудника</button>
         </form>
-        <form action="/employees/filter" method="get">
+        <form th:action="@{/employees/filter}" method="get">
             <input type="text" name="name" placeholder="Имя">
             <input type="text" name="surname" placeholder="Фамилия">
             <input type="text" name="number" placeholder="Номер телефона">

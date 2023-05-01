@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>Свободное время</h1>
-    <form action="#" th:action="@{/calendar/add}" method="post">
+    <form th:action="@{/calendar/add}" method="post">
         <label for="date">Date:</label>
-        <input type="date" id="date" name="date" min="2023-04-28" max="2023-05-28" required />
+        <input type="date" id="date" name="date" min="2023-04-29" max="2023-05-29" required />
 
         <label for="time">Time:</label>
         <input type="time" id="time" name="time" required />
@@ -22,6 +22,19 @@
         <button type="submit">Add to Calendar</button>
     </form>
 
+    <form th:action="@{/calendar/filter}" method="get">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" min="2023-04-29" max="2023-05-29" />
+
+        <label for="employee">Employee:</label>
+        <select id="employee" name="employee">
+            <option value="" selected>Select an option</option>
+            <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+
     <table>
         <thead>
             <tr>
@@ -32,9 +45,14 @@
         </thead>
         <tbody>
             <tr th:each="calendar : ${calendar}">
-                <td th:text="${calendar.employee}"></td>
+                <td th:text="${calendar.employee.name} + ' ' + ${calendar.employee.surname}"></td>
                 <td th:text="${calendar.date}"></td>
                 <td th:text="${calendar.time}"></td>
+                <td>
+                    <form th:action="@{/calendar/delete/{id}(id=${calendar.id})}" method="post">
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>

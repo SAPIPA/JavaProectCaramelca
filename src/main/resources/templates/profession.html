@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Календарь</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<h1>Свободное время</h1>
+    <form th:action="@{/profession/add}" method="post">
+      <label for="service">Service:</label>
+      <select id="service" name="service" required>
+        <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}" />
+      </select>
+
+      <label for="employee">Employee:</label>
+      <select id="employee" name="employee" required>
+        <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
+      </select>
+
+      <button type="submit">Add to profession</button>
+    </form>
+
+    <form th:action="@{/profession/filter}" method="get">
+      <label for="service">Service:</label>
+      <select id="service" name="service">
+        <option value="" selected>Select an option</option>
+        <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}" />
+      </select>
+
+      <label for="employee">Employee:</label>
+      <select id="employee" name="employee">
+        <option value="" selected>Select an option</option>
+        <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
+      </select>
+
+      <button type="submit">Filter</button>
+    </form>
+
+<table>
+  <thead>
+  <tr>
+    <th>Сотрудник</th>
+    <th>Услуга</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="employeeService : ${employeeServices}">
+    <td th:text="${employeeService.employee.name} + ' ' + ${employeeService.employee.surname}"></td>
+    <td th:text="${employeeService.service.title}"></td>
+    <td>
+      <form th:action="@{/profession/delete/{id}(id=${employeeService.id})}" method="post">
+        <button type="submit">Удалить</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
