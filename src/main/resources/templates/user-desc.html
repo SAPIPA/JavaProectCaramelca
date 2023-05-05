@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Календарь</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <h1>Описание пользователя</h1>
+    <form th:action="@{/user/{id}/edit(id=${id})}" method="post">
+        <input type="text" name="description" placeholder="Введите описание" th:value="${user.description}" required>
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>

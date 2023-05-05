@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,6 +55,11 @@ public class ServiceController {
         model.addAttribute("employees", employees);
 
 
+        LocalDate minDate = LocalDate.now().plusDays(1);
+        LocalDate maxDate = minDate.plusMonths(1);
+        model.addAttribute("minDate", minDate);
+        model.addAttribute("maxDate", maxDate);
+
         return "service";
     }
 
@@ -86,6 +92,11 @@ public class ServiceController {
         }
 
         model.addAttribute("calendars", calendars);
+
+        LocalDate minDate = LocalDate.now().plusDays(1);
+        LocalDate maxDate = minDate.plusMonths(1);
+        model.addAttribute("minDate", minDate);
+        model.addAttribute("maxDate", maxDate);
 
         return "service";
     }

@@ -1,7 +1,6 @@
 package com.example.Caramelca.controllers;
 
 import com.example.Caramelca.models.Employee;
-import com.example.Caramelca.repositories.Employee_ServiceRepository;
 import com.example.Caramelca.services.EmployeeService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,11 +17,9 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    private final Employee_ServiceRepository employeeServiceRepository;
 
-    public EmployeeController(EmployeeService employeeService, Employee_ServiceRepository employeeServiceRepository) {
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
-        this.employeeServiceRepository = employeeServiceRepository;
     }
 
     @GetMapping("/employees")

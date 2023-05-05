@@ -5,6 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<nav class="admin">
+    <ol>
+        <li><a th:href="@{/appointment}">Записи</a></li>
+        <li><a th:href="@{/employees}">Сотрудники</a></li>
+        <li><a th:href="@{/profession}">Профессии</a></li>
+        <li><a th:href="@{/user}">Клиенты</a></li>
+        <li><a th:href="@{/calendar}">Календарь</a></li>
+    </ol>
+</nav>
 <div>
     <form th:action="@{/logout}">
         <input type="submit" value="Sign Out"/>

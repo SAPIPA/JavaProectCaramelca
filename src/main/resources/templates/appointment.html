@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Календарь</title>
+  <title>Записи</title>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<h1>Свободное время</h1>
-<form action="#" th:action="@{/calendar/add}" method="post">
-  <label for="date">Date:</label>
-  <input type="date" id="date" name="date" min="2023-04-28" max="2023-05-28" required />
+<nav class="admin">
+  <ol>
+    <li><a th:href="@{/appointment}">Записи</a></li>
+    <li><a th:href="@{/employees}">Сотрудники</a></li>
+    <li><a th:href="@{/profession}">Профессии</a></li>
+    <li><a th:href="@{/user}">Клиенты</a></li>
+    <li><a th:href="@{/calendar}">Календарь</a></li>
+  </ol>
+</nav>
+<form th:action="@{/appointment/filter}" method="get">
+  <label for="date">Дата:</label>
+  <input type="date" id="date" name="date" th:min="${minDate}" th:max="${maxDate}" />
 
-  <label for="time">Time:</label>
-  <input type="time" id="time" name="time" required />
-
-  <label for="employee">Employee:</label>
-  <select id="employee" name="employee" required>
-    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
+  <label for="employer">Сотрудник:</label>
+  <select id="employer" name="employer">
+    <option value="" selected>Выберите сотрудника</option>
+    <option th:each="employer : ${employees}" th:value="${employer.id}" th:text="${employer.name} + ' ' + ${employer.surname}" />
   </select>
 
-  <button type="submit">Add to Calendar</button>
-</form>
+  <label for="service">Услуга:</label>
+  <select id="service" name="service">
+    <option value="" selected>Выберите услугу</option>
+    <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}"/>
+  </select>
 
+  <button type="submit">Поиск</button>
+</form>
 <table>
   <thead>
-  <tr>
-    <th>Сотрудник</th>
-    <th>Дата</th>
-    <th>Время</th>
-  </tr>
+    <tr>
+      <th>Услуга</th>
+      <th>Стоимость</th>
+      <th>Сотрудник</th>
+      <th>Клиент</th>
+      <th>Дата</th>
+      <th>Время</th>
+    </tr>
   </thead>
   <tbody>
-  <tr th:each="calendar : ${calendar}">
-    <td th:text="${calendar.employee}"></td>
-    <td th:text="${calendar.date}"></td>
-    <td th:text="${calendar.time}"></td>
-  </tr>
+    <tr th:each="appointment : ${appointments}">
+      <td th:text="${appointment.service.title}"></td>
+      <td th:text="${appointment.service.cost}"></td>
+      <td th:text="${appointment.employee.name} + ' ' + ${appointment.employee.surname}"></td>
+      <td th:text="${appointment.user.name} + ' ' + ${appointment.user.surname}"></td>
+      <td th:text="${appointment.date}"></td>
+      <td th:text="${appointment.time}"></td>
+    </tr>
   </tbody>
 </table>
 </body>

@@ -6,33 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+<nav class="admin">
+    <ol>
+        <li><a th:href="@{/appointment}">Записи</a></li>
+        <li><a th:href="@{/employees}">Сотрудники</a></li>
+        <li><a th:href="@{/profession}">Профессии</a></li>
+        <li><a th:href="@{/user}">Клиенты</a></li>
+        <li><a th:href="@{/calendar}">Календарь</a></li>
+    </ol>
+</nav>
     <h1>Свободное время</h1>
     <form th:action="@{/calendar/add}" method="post">
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" min="2023-04-29" max="2023-05-29" required />
+        <label for="date">Дата:</label>
+        <input type="date" id="date" name="date" th:min="${minDate}" th:max="${maxDate}" required />
 
-        <label for="time">Time:</label>
+        <label for="time">Время:</label>
         <input type="time" id="time" name="time" required />
 
-        <label for="employee">Employee:</label>
+        <label for="employee">Сотрудник:</label>
         <select id="employee" name="employee" required>
+            <option value="" selected>Выберите сотрудника</option>
             <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
         </select>
 
-        <button type="submit">Add to Calendar</button>
+        <button type="submit">Добавить</button>
     </form>
 
     <form th:action="@{/calendar/filter}" method="get">
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" min="2023-04-29" max="2023-05-29" />
+        <label for="date">Дата:</label>
+        <input type="date" id="date" name="date" th:min="${minDate}" th:max="${maxDate}" />
 
-        <label for="employee">Employee:</label>
+        <label for="employee">Сотрудник:</label>
         <select id="employee" name="employee">
-            <option value="" selected>Select an option</option>
+            <option value="" selected>Выберите сотрудника</option>
             <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
         </select>
 
-        <button type="submit">Filter</button>
+        <button type="submit">Поиск</button>
     </form>
 
     <table>

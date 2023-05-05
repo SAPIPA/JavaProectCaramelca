@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Календарь</title>
+  <title>Профессии</title>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-<h1>Свободное время</h1>
+<nav class="admin">
+  <ol>
+    <li><a th:href="@{/appointment}">Записи</a></li>
+    <li><a th:href="@{/employees}">Сотрудники</a></li>
+    <li><a th:href="@{/profession}">Профессии</a></li>
+    <li><a th:href="@{/user}">Клиенты</a></li>
+    <li><a th:href="@{/calendar}">Календарь</a></li>
+  </ol>
+</nav>
+<h1>Профессии</h1>
     <form th:action="@{/profession/add}" method="post">
-      <label for="service">Service:</label>
+      <label for="service">Услуга:</label>
       <select id="service" name="service" required>
+        <option value="" selected>Выберите услугу</option>
         <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}" />
       </select>
 
-      <label for="employee">Employee:</label>
+      <label for="employee">Сотрудник:</label>
       <select id="employee" name="employee" required>
+        <option value="" selected>Выберите сотрудника</option>
         <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
       </select>
 
-      <button type="submit">Add to profession</button>
+      <button type="submit">Добавить</button>
     </form>
 
     <form th:action="@{/profession/filter}" method="get">
-      <label for="service">Service:</label>
+      <label for="service">Услуга:</label>
       <select id="service" name="service">
-        <option value="" selected>Select an option</option>
+        <option value="" selected>Выберите услугу</option>
         <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.title}" />
       </select>
 
-      <label for="employee">Employee:</label>
+      <label for="employee">Сотрудник:</label>
       <select id="employee" name="employee">
-        <option value="" selected>Select an option</option>
+        <option value="" selected>Выберите сотрудника</option>
         <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name} + ' ' + ${employee.surname}" />
       </select>
 
-      <button type="submit">Filter</button>
+      <button type="submit">Поиск</button>
     </form>
 
 <table>

@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Caramelca</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
+<div th:if="${user}">
+  <a th:href="@{/employees}">ADMIN</a>
+</div>
 <div class="wrapper">
   <section class="hero">
     <div class="cointainer">
       <header class="header">
         <nav class="menu">
           <ul class="menu_list">
-            <li class="menu__item"><a href="#" class="menu__link">Наши услуги</a></li>
-            <li class="menu__item"><a href="#" class="menu__link">Мастера</a></li>
-            <li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
-            <li class="menu__item"><a href="#" class="menu__link">Регистрация</a></li>
-            <li class="menu__item"><a href="#" class="menu__link">Войти</a></li>
+            <li class="menu__item">
+              <form th:action="@{/logout}">
+                <input type="submit" value="Sign Out"/>
+              </form></li>
+            <li class="menu__item"><a th:href="@{registration}" class="menu__link">Регистрация</a></li>
+            <li class="menu__item"><a th:href="@{login}" class="menu__link">Войти</a></li>
           </ul>
         </nav>
       </header>
@@ -39,26 +43,6 @@
     <div class="cointainer">
       <h2 class="section__titlen">Наши услуги</h2>
       <h3 class="section__subtitlen">Мы поможем вам стать еще более привлекательными</h3>
-      <!--<module class="offers-text1">
-          <h3 class="m-text-big"> Маниюр</h3>
-      </module>
-      <module class="offers-text">
-          <h3 class="r-text-big"> Наращивание ресниц и коррекция бровей</h3>
-      </module>
-      <div class="offers">
-          <img src="../img/мини-1.png" class="offers" alt="">
-          <img src="../img/мини-2.png" class="offers" alt="">
-      </div>
-      <div class="offers1">
-          <img src="../img/мини-3.png" class="offers1" alt="">
-          <module class="offers-text">
-              <h3 class="p-text-big"> Педикюр</h3>
-          </module>
-          <img src="../img/мини-4.png" class="offers1" alt="">
-          <module class="offers-text">
-              <h3 class="s-text-big"> Стрижка</h3>
-          </module>
-      </div>-->
       <p><img src="../img/мини-1.png" class="offers" alt=""/><h3 class="txt1"> Маникюр:</br></h3><h4 class="txt3">Нет ничего прекраснее, </br>чем идеальный маникюр под кутикулу.</h4></p>
       <br><br>
       <p><img src="../img/мини-2.png" class="offers1" alt=""/> <h3 class="txt">Наращивание ресниц и коррекция бровей:</h3></br><h4 class="txt4">Если хочешь что-то поменять в своей жизни,</br> начни с ресниц и бровок!</h4></p>
@@ -111,63 +95,6 @@
       </div>
     </div>
   </section>
-  <!--<section class="slider middle">
-      <div class="slides">
-          <input type="radio" name="r" id="r1" checked>
-          <input type="radio" name="r" id="r2" checked>
-          <input type="radio" name="r" id="r3" checked>
-          <input type="radio" name="r" id="r4" checked>
-          <input type="radio" name="r" id="r5" checked>
-          <input type="radio" name="r" id="r6" checked>
-          <input type="radio" name="r" id="r7" checked>
-          <input type="radio" name="r" id="r8" checked>
-          <input type="radio" name="r" id="r9" checked>
-          <input type="radio" name="r" id="r10" checked>
-          <input type="radio" name="r" id="r11" checked>
-          <input type="radio" name="r" id="r12" checked>
-          <input type="radio" name="r" id="r13" checked>
-          <input type="radio" name="r" id="r14" checked>
-          <input type="radio" name="r" id="r15" checked>
-          <input type="radio" name="r" id="r16" checked>
-          <input type="radio" name="r" id="r17" checked>
-          <div class="slide"><img src="../img/1.png" alt=""></div>
-          <div class="slide"><img src="../img/2.png" alt=""></div>
-          <div class="slide"><img src="../img/3.png" alt=""></div>
-          <div class="slide"><img src="../img/4.png" alt=""></div>
-          <div class="slide"><img src="../img/5.png" alt=""></div>
-          <div class="slide"><img src="../img/6.png" alt=""></div>
-          <div class="slide"><img src="../img/7.png" alt=""></div>
-          <div class="slide"><img src="../img/9.png" alt=""></div>
-          <div class="slide"><img src="../img/10.png" alt=""></div>
-          <div class="slide"><img src="../img/11.png" alt=""></div>
-          <div class="slide"><img src="../img/12.png" alt=""></div>
-          <div class="slide"><img src="../img/13.png" alt=""></div>
-          <div class="slide"><img src="../img/14.png" alt=""></div>
-          <div class="slide"><img src="../img/15.png" alt=""></div>
-          <div class="slide"><img src="../img/16.png" alt=""></div>
-          <div class="slide"><img src="../img/17.png" alt=""></div>
-          <div class="slide"><img src="../img/18.png" alt=""></div>
-      </div>
-      <div class="navigation">
-          <label for="r1" class="bar"></label>
-          <label for="r2" class="bar"></label>
-          <label for="r3" class="bar"></label>
-          <label for="r4" class="bar"></label>
-          <label for="r5" class="bar"></label>
-          <label for="r6" class="bar"></label>
-          <label for="r7" class="bar"></label>
-          <label for="r8" class="bar"></label>
-          <label for="r9" class="bar"></label>
-          <label for="r10" class="bar"></label>
-          <label for="r11" class="bar"></label>
-          <label for="r12" class="bar"></label>
-          <label for="r13" class="bar"></label>
-          <label for="r14" class="bar"></label>
-          <label for="r15" class="bar"></label>
-          <label for="r16" class="bar"></label>
-          <label for="r17" class="bar"></label>
-      </div>
-  </section>-->
   <div class="slideshow-container">
 
     <div class="mySlides fade">
@@ -325,9 +252,9 @@
         <p class="offers_text_man12">Снятие + маникюр + выравнивание + покрытие</p>
       </div>
     </section>
-    <a href="#" class="btn">Записаться</a>
-    <a href="#" class="btn1">Записаться</a>
-    <a href="#" class="btn2">Записаться</a>
+    <a th:href="@{service/1}" class="btn">Записаться</a>
+    <a th:href="@{service/2}" class="btn1">Записаться</a>
+    <a th:href="@{service/3}" class="btn2">Записаться</a>
   </section>
   <section class="ptice-к">
     <h2 class="section__titlebr">НАРАЩИВАНИЕ РЕСНИЦ И КОРРЕКЦИЯ БРОВЕЙ</h2>
@@ -367,9 +294,9 @@
         <p class="offers_text_eye12">Окрашивание ресниц + ламинирование</p>
       </div>
     </section>
-    <a href="#" class="btn">Записаться</a>
-    <a href="#" class="btn11">Записаться</a>
-    <a href="#" class="btn21">Записаться</a>
+    <a th:href="@{service/4}" class="btn">Записаться</a>
+    <a th:href="@{service/5}" class="btn11">Записаться</a>
+    <a th:href="@{service/6}" class="btn21">Записаться</a>
   </section>
   <section class="ptice-p">
     <h2 class="section__title">ПЕДИКЮР</h2>
@@ -411,9 +338,9 @@
       <p class="offers_text_p12">Снятие + покртие + обработка стоп и пальчиков</p>
     </div>
   </section>
-  <a href="#" class="btn">Записаться</a>
-  <a href="#" class="btn1">Записаться</a>
-  <a href="#" class="btn2">Записаться</a>
+  <a th:href="@{service/7}" class="btn">Записаться</a>
+  <a th:href="@{service/8}" class="btn1">Записаться</a>
+  <a th:href="@{service/9}" class="btn2">Записаться</a>
   </section>
   <section class="ptice-s">
     <h2 class="section__title">СТРИЖКА</h2>
@@ -451,9 +378,9 @@
       <p class="offers_text_s12">Кератин + ботокс волос</p>
     </div>
   </section>
-  <a href="#" class="btn3">Записаться</a>
-  <a href="#" class="btn31">Записаться</a>
-  <a href="#" class="btn32">Записаться</a>
+  <a th:href="@{service/10}" class="btn3">Записаться</a>
+  <a th:href="@{service/11}" class="btn31">Записаться</a>
+  <a th:href="@{service/12}" class="btn32">Записаться</a>
 </div>
 <down class="wrapper_down">
   <ul class="socials">

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Пользователи</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<nav class="admin">
+  <ol>
+    <li><a th:href="@{/appointment}">Записи</a></li>
+    <li><a th:href="@{/employees}">Сотрудники</a></li>
+    <li><a th:href="@{/profession}">Профессии</a></li>
+    <li><a th:href="@{/user}">Клиенты</a></li>
+    <li><a th:href="@{/calendar}">Календарь</a></li>
+  </ol>
+</nav>
+<form th:action="@{user/filter}" method="get">
+  <label for="user">Пользователь:</label>
+  <select id="user" name="user">
+    <option value="" selected>Выберите пользователя</option>
+    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name} + ' ' + ${user.surname}" />
+  </select>
+
+  <button type="submit">Поиск</button>
+</form>
+<table>
+  <thead>
+  <tr>
+    <th>ФИО</th>
+    <th>Описание</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user: ${users}">
+    <td th:text="${user.name} + ' ' + ${user.surname} + ' ' + ${user.patronymic}"></td>
+    <td th:text="${user.description}"></td>
+    <td>
+      <a th:href="'/user/' + ${user.id}">Редактировать</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

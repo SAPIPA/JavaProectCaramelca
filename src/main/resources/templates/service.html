@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Календарь</title>
+  <title>Услуга</title>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+<a th:href="@{/index}">Назад</a>
 <h1>Выберите дату</h1>
 <form th:action="@{/service/{id}/filter(id = ${id.id})}" method="get">
-  <label for="date">Date:</label>
-  <input type="date" id="date" name="date" min="2023-04-28" max="2023-05-28" />
+  <label for="date">Дата:</label>
+  <input type="date" id="date" name="date" th:min="${minDate}" th:max="${maxDate}" />
 
-  <label for="employer">Employee:</label>
+  <label for="employer">Сотрудник:</label>
   <select id="employer" name="employer">
-    <option value="" selected>Select an option</option>
+    <option value="" selected>Выберите мастера</option>
     <option th:each="employer : ${employees}" th:value="${employer.id}" th:text="${employer.name} + ' ' + ${employer.surname}" />
   </select>
 
-  <button type="submit">Filter</button>
+  <button type="submit">Поиск</button>
 </form>
 <table>
   <thead>
