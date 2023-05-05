@@ -25,13 +25,14 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Model model) {
+    public String addUser(User user,
+                          Model model) {
         User userFromDb = userRepository.findByUsername(user.getUsername());
         if (userFromDb != null) {
-            model.addAttribute("message", "Вы уже зарегистрированы");
+            model.addAttribute("message", "Такой логин уже зарегистрирован");
             return "registration";
         }
-        user.setRoles(Collections.singleton(Role.ADMIN));
+        user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
         return "redirect:/login";
     }

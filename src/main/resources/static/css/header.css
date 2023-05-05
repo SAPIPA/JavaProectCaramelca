@@ -9,25 +9,32 @@ body {
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
 ul {
     padding: 0;
     margin: 0;
+    text-decoration: none;
 }
 
 ul li {
     list-style: none;
+    text-decoration: none;
 }
 
 .cointainer{
-    width: 1150px;
+    width: auto;
+}
+
+img {
+    border: none;
 }
 
 .hero{
-    background: url('../img/1b.png') top center;
+    background: url('../img/fon.png') top center;
     color: #fff;
-    object-fit: scale-down;
+    background-size: cover;
 }
 
 .header {
@@ -41,12 +48,12 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
-.menu {
+.menu1 {
     font-family: 'Montserrat', sans-serif;
     position: absolute;
     top: 65px;
-    left: 450px;
-    color: #fff;
+    left: 35%;
+    color: #000000;
 }
 
 .menu__item {
@@ -58,6 +65,12 @@ h1, h2, h3, h4, h5, h6 {
 .menu__link {
     font-size: 14px;
     color: #ffffff;
+    text-decoration: none;
+}
+
+.menu__link1 {
+    font-size: 14px;
+    color: #000000;
     text-decoration: none;
 }
 
@@ -73,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
     margin-bottom: 55px;
     margin-top: 120px;
-    margin-left: 445px;
+    margin-left: 40%;
 }
 
 .hero_title1{
@@ -83,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     line-height: 1.1;
     margin-bottom: 100px;
-    margin-left: 300px;
+    margin-left: 10%;
 }
 
 .hero_uptitle{
@@ -96,4 +109,52 @@ h1, h2, h3, h4, h5, h6 {
 
 .work{
     margin-top: 200px;
+}
+
+.button-13 {
+    align-items: center;
+    background-color: #ffffff00;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 0.91);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  input[type="text"], textarea {
+    background-color : #e6c7b0;
+  }
+
+  input[type="password"], textarea {
+    background-color : #e6c7b0;
+  }
+
+  input[type="date"], textarea {
+    background-color : #e6c7b0;
+  }
+
+  input[type="time"], textarea {
+    background-color : #e6c7b0;
+  }
+
+  select {
+    background-color : #e6c7b0;
 }

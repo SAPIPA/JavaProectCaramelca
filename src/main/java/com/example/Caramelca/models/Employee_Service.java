@@ -2,6 +2,9 @@ package com.example.Caramelca.models;
 
 import jakarta.persistence.*;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Entity
 public class Employee_Service {
     @Id

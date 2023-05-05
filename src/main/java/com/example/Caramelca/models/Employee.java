@@ -1,9 +1,9 @@
 package com.example.Caramelca.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 public class Employee {
@@ -13,6 +13,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    private Set<Employee_Service> employee_Service = new LinkedHashSet<Employee_Service>();
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    private Set<Calendar> calendar = new LinkedHashSet<Calendar>();
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    private Set<Appointment> appointment = new LinkedHashSet<Appointment>();
+
     private String name;
 
     private String surname;
@@ -20,6 +29,8 @@ public class Employee {
     private String patronymic;
 
     private String number;
+
+    private boolean deleted;
 
     public Employee() {
 

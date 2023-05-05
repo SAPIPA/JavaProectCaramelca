@@ -1,7 +1,7 @@
 .offers_masters{
     display: inline-block;
     margin-bottom: 20px;
-    margin-left: 260px;
+    margin-left: 20%;
 }
 
 .min-text{
@@ -176,7 +176,7 @@
     border: 1px solid  black;
     margin-left: 139px;
     margin-top: -50px;
-    margin-bottom: 200px;
+    margin-bottom: 20%;
     
 }
 
@@ -189,18 +189,18 @@
     font-weight: bold;
     text-decoration: none;
     border: 1px solid  black;
-    margin-left: 295px;
+    margin-left: 50%;
 }
 
 .btn2{
     background: #fff;
     font-size: 12px;
     border-radius: 4px;
-    padding: 14px 29px;
     color: black;
     font-weight: bold;
     text-decoration: none;
     border: 1px solid  black;
-    margin-left: 280px;
+    margin-left: 50%;
+    padding: 14px 29px;
     margin-top: -50px;
 }

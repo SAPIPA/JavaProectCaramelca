@@ -18,6 +18,7 @@ public class Calendar implements Serializable {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 

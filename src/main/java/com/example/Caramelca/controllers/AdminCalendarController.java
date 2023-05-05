@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Controller
@@ -34,8 +38,28 @@ public class AdminCalendarController {
         Iterable<Calendar> calendars = calendarRepository.findAll();
         Iterable<Employee> employees = employeeRepository.findAll();
 
+        /*SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        for (Calendar calendar: calendars) {
+            Date date = calendar.getDate();
+            String formattedDate = formatter.format(date);
+            try {
+                calendar.setDate(formatter.parse(formattedDate));
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }*/
+
+        for (Calendar calendar: calendars) {
+            Date date = calendar.getDate();
+        }
+
         model.addAttribute("calendar", calendars);
         model.addAttribute("employees", employees);
+
+        LocalDate minDate = LocalDate.now().plusDays(1);
+        LocalDate maxDate = minDate.plusMonths(1);
+        model.addAttribute("minDate", minDate);
+        model.addAttribute("maxDate", maxDate);
 
         return "calendar";
     }
@@ -63,6 +87,12 @@ public class AdminCalendarController {
         }
         model.addAttribute("calendar", calendars);
         model.addAttribute("employees", employees);
+
+        LocalDate minDate = LocalDate.now().plusDays(1);
+        LocalDate maxDate = minDate.plusMonths(1);
+        model.addAttribute("minDate", minDate);
+        model.addAttribute("maxDate", maxDate);
+
         return "calendar";
     }
 
@@ -71,22 +101,4 @@ public class AdminCalendarController {
         calendarRepository.deleteById(id);
         return "redirect:/calendar";
     }
-
-    /*@GetMapping("/calendar")
-    public String showCalendar(Model model) {
-        LocalDate today = LocalDate.now();
-        LocalDate startOfMonth = today;
-        LocalDate endOfMonth = startOfMonth.plusMonths(1).withDayOfMonth(today.getDayOfMonth());
-
-        List<LocalDate> days = new ArrayList<>();
-        LocalDate date = startOfMonth;
-        while (!date.isAfter(endOfMonth)) {
-            days.add(date);
-            date = date.plusDays(1);
-        }
-
-        model.addAttribute("days", days);
-
-        return "calendar";
-    } */
 }

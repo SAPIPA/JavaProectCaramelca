@@ -1,26 +1,59 @@
 .masters{
     font-family: 'Montserrat', sans-serif;
+    margin-left: center;
 }
 
 .price_m{
     font-family: 'Montserrat', sans-serif;
 }
 
+.m{
+    margin-left: 15%;
+}
+
+.mr{
+    margin-left: 10%;
+}
+
+.mr2{
+    margin-left: 13%;
+}
+
+.r{
+    margin-left: 15%;
+}
+
+.n{
+    margin-left: 15%;
+}
+
+.s{
+    margin-left: 15%;
+}
+
+.s1{
+    margin-left: 14%;
+}
+
 .price_k{
     font-family: 'Montserrat', sans-serif;
+    margin-left: center;
 }
 
 .price_p{
     font-family: 'Montserrat', sans-serif;
+    margin-left: center;
 }
 
 .price_s{
     font-family: 'Montserrat', sans-serif;
+    margin-left: center;
 }
 
 .eye-text{
     font-family: 'Montserrat', sans-serif;
     display: inline-block;
+    margin-left: center;
 }
 
 .offers_text_eye{
@@ -29,7 +62,7 @@
     font-weight: bold;
     font-size: 20px;
     padding-left: 120px;
-    margin-left: 21px;
+    margin-left: 2%;
 }
 
 .offers_text_eye1{
@@ -405,7 +438,7 @@
     font-weight: bold;
     text-decoration: none;
     border: 1px solid  black;
-    margin-left: 139px;
+    margin-left: 9%;
 }
 
 .btn31{
@@ -434,4 +467,8 @@
     border: 1px solid  black;
     margin-left: 299px;
     margin-top: -50px;
+}
+
+.cointainer {
+    margin: center;
 }
