@@ -1,9 +1,9 @@
 package com.example.Caramelca.models;
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Appointment {
@@ -23,13 +23,13 @@ public class Appointment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    @Column(columnDefinition = "DATE")
+    private LocalDate date;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    private Date time;
+    @Column(columnDefinition = "TIME WITHOUT TIME ZONE")
+    private LocalTime time;
 
-    public Appointment(Employee employee, Service service, User user, Date date, Date time) {
+    public Appointment(Employee employee, Service service, User user, LocalDate date, LocalTime time) {
         this.employee = employee;
         this.service = service;
         this.user = user;
@@ -74,19 +74,19 @@ public class Appointment {
         this.user = user;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Date getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 }

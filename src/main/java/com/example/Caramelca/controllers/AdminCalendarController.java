@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.LocalTime;
 
 @Controller
 @PreAuthorize("hasAuthority('ADMIN')")
@@ -38,19 +35,8 @@ public class AdminCalendarController {
         Iterable<Calendar> calendars = calendarRepository.findAll();
         Iterable<Employee> employees = employeeRepository.findAll();
 
-        /*SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (Calendar calendar: calendars) {
-            Date date = calendar.getDate();
-            String formattedDate = formatter.format(date);
-            try {
-                calendar.setDate(formatter.parse(formattedDate));
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-        }*/
-
-        for (Calendar calendar: calendars) {
-            Date date = calendar.getDate();
+            LocalDate date = calendar.getDate();
         }
 
         model.addAttribute("calendar", calendars);
@@ -65,8 +51,8 @@ public class AdminCalendarController {
     }
 
     @PostMapping("/calendar/add")
-    public String calendarAdd(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date date,
-                              @RequestParam @DateTimeFormat(pattern = "HH:mm") Date time,
+    public String calendarAdd(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate date,
+                              @RequestParam @DateTimeFormat(pattern = "HH:mm") LocalTime time,
                               @RequestParam Employee employee) {
         Calendar calendar = new Calendar(employee, date, time);
         calendarRepository.save(calendar);
@@ -74,7 +60,7 @@ public class AdminCalendarController {
     }
 
     @GetMapping("/calendar/filter")
-    public String calendarFilter(@RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date date,
+    public String calendarFilter(@RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate date,
                                  @RequestParam(required = false) Employee employee,
                                  Model model) {
         Iterable<Calendar> calendars = calendarRepository.findAll();

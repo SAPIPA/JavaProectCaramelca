@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -65,7 +63,7 @@ public class ServiceController {
 
     @GetMapping("/service/{id}/filter")
     public String serviceFilter(@PathVariable(value = "id") Service service,
-                                @RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date date,
+                                @RequestParam(required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate date,
                                 @RequestParam(required = false) Employee employer,
                                 Model model) {
 
@@ -108,19 +106,8 @@ public class ServiceController {
                               @RequestParam Employee employer,
                               @AuthenticationPrincipal User user) {
 
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date datE;
-        Date timE;
-        try {
-            timE = format.parse(time);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            datE = format.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        LocalDate datE = LocalDate.parse(date);
+        LocalTime timE = LocalTime.parse(time);
 
         Appointment appointment = new Appointment(employer, service, user, datE, timE);
         appointmetnRepository.save(appointment);

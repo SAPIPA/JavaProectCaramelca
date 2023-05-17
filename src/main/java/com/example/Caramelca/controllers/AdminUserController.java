@@ -1,5 +1,6 @@
 package com.example.Caramelca.controllers;
 
+import com.example.Caramelca.models.Role;
 import com.example.Caramelca.models.User;
 import com.example.Caramelca.repositories.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,9 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @PreAuthorize("hasAuthority('ADMIN')")
@@ -25,8 +23,8 @@ public class AdminUserController {
 
     @GetMapping("/user")
     public String user(Model model) {
-        Iterable<User> users = userRepository.findAll();
-        Iterable<User> Allusers = userRepository.findAll();
+        Iterable<User> users = userRepository.findByRoles(Role.USER);
+        Iterable<User> Allusers = userRepository.findByRoles(Role.USER);
         model.addAttribute("users", users);
         model.addAttribute("Allusers", Allusers);
         return "user";
@@ -43,8 +41,8 @@ public class AdminUserController {
     @GetMapping("/user/filter")
     public String userFilter(@RequestParam(required = false) User user,
                              Model model) {
-        Iterable<User> users = userRepository.findAll();
-        Iterable<User> Allusers = userRepository.findAll();
+        Iterable<User> users = userRepository.findByRoles(Role.USER);
+        Iterable<User> Allusers = userRepository.findByRoles(Role.USER);
 
         if (user != null) {
             users = userRepository.findByNumber(user.getNumber());

@@ -2,12 +2,10 @@ package com.example.Caramelca.models;
 
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Calendar implements Serializable {
@@ -20,14 +18,13 @@ public class Calendar implements Serializable {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    @Column(columnDefinition = "DATE")
+    private LocalDate date;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    private Date time;
+    @Column(columnDefinition = "TIME WITHOUT TIME ZONE")
+    private LocalTime time;
 
-    public Calendar(Employee employee, Date date, Date time) {
+    public Calendar(Employee employee, LocalDate date, LocalTime time) {
         this.employee = employee;
         this.date = date;
         this.time = time;
@@ -53,19 +50,19 @@ public class Calendar implements Serializable {
         this.employee = employee;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Date getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 }

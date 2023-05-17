@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Entity
 public class Employee {
-    //Добавить должность
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
